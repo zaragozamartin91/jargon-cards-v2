@@ -79,4 +79,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 [Building for Relative Paths](https://create-react-app.dev/docs/deployment/#building-for-relative-paths)
 
-Added `"homepage": "https://zaragozamartin91.github.io/jargon-cards-app"` to the package.json file to make `jargon-cards-app` the default root path of the app.
+Added `"homepage": "https://zaragozamartin91.github.io/jargon-cards-v2"` to the package.json file to make `jargon-cards-v2` the default root path of the app.
+
+Added a HashRouter base functionality which is better suited for pages hosted in github-pages.
+
