@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/jargon-cards-v2/static/css/main.073c9b0a.css",
+    "main.js": "/jargon-cards-v2/static/js/main.ab785a4a.js",
+    "static/js/95.0fd4889b.chunk.js": "/jargon-cards-v2/static/js/95.0fd4889b.chunk.js",
+    "static/js/787.9b9dafc4.chunk.js": "/jargon-cards-v2/static/js/787.9b9dafc4.chunk.js",
+    "static/media/logo.svg": "/jargon-cards-v2/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "index.html": "/jargon-cards-v2/index.html",
+    "main.073c9b0a.css.map": "/jargon-cards-v2/static/css/main.073c9b0a.css.map",
+    "main.ab785a4a.js.map": "/jargon-cards-v2/static/js/main.ab785a4a.js.map",
+    "95.0fd4889b.chunk.js.map": "/jargon-cards-v2/static/js/95.0fd4889b.chunk.js.map",
+    "787.9b9dafc4.chunk.js.map": "/jargon-cards-v2/static/js/787.9b9dafc4.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.073c9b0a.css",
+    "static/js/main.ab785a4a.js"
+  ]
+}
