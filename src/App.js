@@ -5,7 +5,7 @@ import React, { Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 const App = () => (
-  <Router /* basename="/jargon-cards-app" */ >
+  <Router basename="/jargon-cards-v2" >
     <Suspense fallback={<div>Loading...</div>}>
       <Routes>
         <Route path="/" element={<Home />} />
