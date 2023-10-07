@@ -2,12 +2,13 @@ import logo from './logo.svg';
 import './App.css';
 
 import React, { Suspense, lazy } from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
+// import { BrowserRouter as Router } from 'react-router-dom';
+import { HashRouter as Router } from 'react-router-dom';
 import { Routes, Route } from 'react-router-dom';
 import { Link } from "react-router-dom";
 
 const App = () => (
-  <Router basename="/jargon-cards-v2" >
+  <Router /* basename="/jargon-cards-v2" */ >
     <Suspense fallback={<div>Loading...</div>}>
       <Routes>
         <Route path="/" element={<Home />} />
