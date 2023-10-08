@@ -8,7 +8,7 @@ function Home() {
   return <div className="App">
     <header className="App-header">
       <img src={logo} className="App-logo" alt="logo" />
-      <p>This is the main page!</p>
+      <p>This is the main page, now being deployed on a custom workflow</p>
       <p>
         Edit <code>src/App.js</code> and save to reload.
       </p>
