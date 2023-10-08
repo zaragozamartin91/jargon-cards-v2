@@ -39,10 +39,6 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-### `npm run serve`
-
-Will serve the contents of the `build/` dir in port 3000 (`npm run build` needs to be executed first).
-
 ## Learn More
 
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
@@ -83,3 +79,11 @@ Added `"homepage": "https://zaragozamartin91.github.io/jargon-cards-v2"` to the 
 
 Added a HashRouter base functionality which is better suited for pages hosted in github-pages.
 
+### 2023-10-08
+
+A custom workflow was created in the `.github\workflows\` directory.
+The workflow:
+- Instals node dependencies
+- Builds the app
+- Builds and pushes the artifact
+- Deploys the app as a github-page
