@@ -87,3 +87,4 @@ The workflow:
 - Builds the app
 - Builds and pushes the artifact
 - Deploys the app as a github-page
+
