@@ -88,3 +88,24 @@ The workflow:
 - Builds and pushes the artifact
 - Deploys the app as a github-page
 
+### 2023-10-13
+
+Using git with **POWERSHELL**.
+
+Instructions here https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
+
+Run with admin privileges:
+
+`Get-Service -Name ssh-agent | Set-Service -StartupType Manual`
+
+`Start-Service ssh-agent`
+
+`ssh-add <Path to your key>`
+
+In order for this to work properly, the repo must be cloned using Powershell as well.
+
+Following [these instructions](https://stackoverflow.com/questions/6688655/select-private-key-to-use-with-git)
+...got this command which worked:
+
+`git clone -c core.sshCommand="ssh -i C:\\Users\\PATH_TO_KEY" git@github.com:zaragozamartin91/jargon-cards-v2.git`
+
