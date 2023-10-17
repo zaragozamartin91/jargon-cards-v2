@@ -12,6 +12,7 @@ function Home() {
       <p>Edit <code>src/App.js</code> and save to reload.</p>
       
       <Link to="/about">About this page</Link>
+      <Link to="/jargon-card-demo">Jargon card demo</Link>
 
       <a className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
         Learn React

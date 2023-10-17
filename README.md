@@ -19,6 +19,9 @@ You may also see any lint errors in the console.
 Launches the test runner in the interactive watch mode.\
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
+Tests are written in JEST.
+[Jest cheatsheet](https://devhints.io/jest)
+
 ### `npm run build`
 
 Builds the app for production to the `build` folder.\
@@ -100,7 +103,7 @@ Run with admin privileges:
 
 `Start-Service ssh-agent`
 
-`ssh-add <Path to your key>`
+`ssh-add $Env:USERPROFILE\.ssh\private_github_thinkpad`
 
 In order for this to work properly, the repo must be cloned using Powershell as well.
 
