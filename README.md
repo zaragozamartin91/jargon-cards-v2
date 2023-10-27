@@ -112,3 +112,8 @@ Following [these instructions](https://stackoverflow.com/questions/6688655/selec
 
 `git clone -c core.sshCommand="ssh -i C:\\Users\\PATH_TO_KEY" git@github.com:zaragozamartin91/jargon-cards-v2.git`
 
+### 2023-10-20
+
+Card flip features implemented using [ReactCardFlip](https://www.npmjs.com/package/react-card-flip).
+
+Tinder style swipe implemented using [ReactTinderCard](https://www.npmjs.com/package/react-tinder-card).
