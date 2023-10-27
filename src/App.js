@@ -9,6 +9,7 @@ import { Routes, Route } from 'react-router-dom'
 
 const Home = lazy(() => import('./routes/Home'))
 const JargonCardDemo = lazy(() => import('./routes/JargonCardDemo'))
+const TinderCardDemo = lazy(() => import('./routes/TinderCardDemo'))
 
 const App = () => (
   <Router /* basename="/jargon-cards-v2" */ >
@@ -17,6 +18,7 @@ const App = () => (
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/jargon-card-demo" element={<JargonCardDemo />} />
+        <Route path="/tinder-card-demo" element={<TinderCardDemo />} />
       </Routes>
     </Suspense>
   </Router>
