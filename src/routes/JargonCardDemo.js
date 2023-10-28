@@ -1,31 +1,35 @@
 import Frame from '../components/Frame'
 import FlashCard from '../components/FlashCard'
-import { useState } from 'react';
 import { useSpring, animated } from '@react-spring/web'
 import Hammer from 'hammerjs'
-import { useEffect } from 'react';
-import { useRef } from 'react';
+import { useState, useEffect, useRef } from 'react'
 
 
-export default function JargonCardDemo(_props) {
-  const [swiped, setSwiped] = useState(false);
+
+export default function JargonCardDemo(props) {
+  const [swipeDirection, setSwipeDirection] = useState('none')
   const [flipped, setFlipped] = useState(false)
+
+  const swipeTransformations = {
+    none: 'translateX(0%)', left: 'translateX(-500%)', right: 'translateX(500%)'
+  }
 
   // Define a spring animation for the swipe-out effect
   const swipeAnimation = useSpring({
-    transform: swiped ? 'translateX(500%)' : 'translateX(0%)',
+    transform: swipeTransformations[swipeDirection],
     onRest: () => {
       // Callback to be invoked when the animation ends
-      if (swiped) {
-        console.log('Animation has ended.');
-        // You can perform additional actions here.
+      if (['left', 'right'].includes(swipeDirection)) {
+        console.log('Animation has ended.')
+
+        // if swipeCallback is passed along then it is invoked
+        props.swipeCallback?.(swipeDirection)
       }
     },
-  });
+  })
 
   const mainDiv = useRef(null)
   const flippedRef = useRef(flipped)
-  const swipedRef = useRef(swiped)
   const mountedRef = useRef(false)
 
   /* Using useRef hook to control a non react widget
@@ -45,11 +49,21 @@ export default function JargonCardDemo(_props) {
 
       /* hammerjs example here https://codepen.io/jtangelder/pen/jOZezm */
       // listen to events...
-      mc.on("swipeleft swiperight press", (ev) => {
+      mc.on("swipeleft", (ev) => {
         console.log(ev.type + " gesture detected.")
-        swipedRef.current = !swipedRef.current
-        setSwiped(swipedRef.current)
+        setSwipeDirection('left')
       })
+
+      mc.on("swiperight", (ev) => {
+        console.log(ev.type + " gesture detected.")
+        setSwipeDirection('right')
+      })
+
+      mc.on("press", (ev) => {
+        console.log(ev.type + " gesture detected.")
+        setSwipeDirection('none')
+      })
+
       mountedRef.current = true
     }
   }, [])
