@@ -1,0 +1,15 @@
+.FlashCardSide {
+    padding: 10px;
+}
+
+.FlashCardFront {
+    background-color: red;
+}
+
+.FlashCardBack {
+    background-color: blue;
+}
+
+.FlashCardLanguagePrompt {
+    text-align: left;
+}

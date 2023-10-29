@@ -71,7 +71,13 @@ export default function FloatingFlashCard(props) {
   return (
     <div ref={mainDiv}>
       <animated.div style={{ ...swipeAnimation }}>
-        <FlashCard flipped={flipped} frontText={'This is the front side'} backText={'This is the BAACK SIDE'} />
+        <FlashCard 
+          flipped={flipped}
+          word={'även om'}
+          usage={'även om danserna har förändrats'}
+          translation={'even though'}
+          definition={''}
+        />
       </animated.div>
     </div>
   )
