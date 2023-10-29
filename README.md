@@ -118,4 +118,11 @@ Following [these instructions](https://stackoverflow.com/questions/6688655/selec
 
 Card flip features implemented using [ReactCardFlip](https://www.npmjs.com/package/react-card-flip).
 
-Tinder style swipe implemented using [ReactTinderCard](https://www.npmjs.com/package/react-tinder-card).
+Tinder card demo implemented using [ReactTinderCard](https://www.npmjs.com/package/react-tinder-card).
+
+### 2023-10-29
+
+Used [HammerJS](https://hammerjs.github.io/getting-started/) to handle swipe and tap gestures.
+
+Used [ReactSpring](https://react-spring.dev/docs/getting-started) to handle tinder like animations.
+
