@@ -34,6 +34,12 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
+### `npm run serve`
+
+Contents of build folder are served on port 3000 with base path `jargon-cards-v2/`.
+
+Minimial server is built with express ; see `server.js` file for further insights.
+
 ### `npm run eject`
 
 **Note: this is a one-way operation. Once you `eject`, you can't go back!**
@@ -125,4 +131,14 @@ Tinder card demo implemented using [ReactTinderCard](https://www.npmjs.com/packa
 Used [HammerJS](https://hammerjs.github.io/getting-started/) to handle swipe and tap gestures.
 
 Used [ReactSpring](https://react-spring.dev/docs/getting-started) to handle tinder like animations.
+
+## 2023-12-30
+
+Dictionaries can be downloaded from https://freedict.org/downloads/
+
+Dictionaries are encoded into [TEI format](https://cdrh.unl.edu/articles/basicguide/TEI) (Xml format)
+
+The TEI file was parsed using [xml-js](https://www.npmjs.com/package/xml-js).
+
+The scprit for parsing the TEI file can be found in `adhoc_scripts/read_xml.js`.
 

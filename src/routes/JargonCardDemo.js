@@ -8,7 +8,15 @@ export default function JargonCardDemo(_props) {
 
   return (
     <Frame overflow={'hidden'}>
-      <FloatingFlashCard swipeCallback={swipeCallback} />
+      <>
+      <FloatingFlashCard
+        swipeCallback={swipeCallback}
+        word={'även om'}
+        usage={'även om danserna har förändrats'}
+        translation={'even though'}
+        definition={''}
+      />
+      </>
     </Frame>
   )
 }

@@ -60,7 +60,7 @@ export default function FlashCard(props) {
 
       <div className='FlashCardSide FlashCardBack' ref={backDiv} style={backDivStyle}>
         <div className='FlashCardLanguagePrompt'><span><i>English</i></span></div>
-        <p>{translation}</p>
+        <p><strong>{translation}</strong></p>
         <hr></hr>
         <p>{definition}</p>
       </div>
