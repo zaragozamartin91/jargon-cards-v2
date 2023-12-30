@@ -40,6 +40,12 @@ Contents of build folder are served on port 3000 with base path `jargon-cards-v2
 
 Minimial server is built with express ; see `server.js` file for further insights.
 
+### Debugging & smoke testing
+
+Uncomment the line `<script src="http://localhost:8097"></script>` in the docs/* HTML files
+
+Launch react devtools by running `npm run react-devtools`
+
 ### `npm run eject`
 
 **Note: this is a one-way operation. Once you `eject`, you can't go back!**

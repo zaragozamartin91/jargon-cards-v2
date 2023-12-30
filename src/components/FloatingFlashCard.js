@@ -28,50 +28,48 @@ export default function FloatingFlashCard(props) {
   })
 
   const mainDiv = useRef(null)
-  const flippedRef = useRef(flipped)
-  const mountedRef = useRef(false)
 
   /* Using useRef hook to control a non react widget
   https://react.dev/reference/react/useEffect#controlling-a-non-react-widget */
   useEffect(() => {
-    if (mountedRef.current) {
-      console.log('Component already mounted')
-    } else {
-      console.log('Mounting component')
-      const mc = new Hammer(mainDiv.current)
-      mc.on('tap', () => {
-        console.log('on tap')
-        console.log('flippedRef.current: ', flippedRef.current)
-        flippedRef.current = !flippedRef.current
-        setFlipped(flippedRef.current)
-      })
+    console.log('Mounting component')
+    const mc = new Hammer(mainDiv.current)
+    mc.on('tap', () => {
+      console.log('on tap')
+      // https://react.dev/reference/react/useEffect#updating-state-based-on-previous-state-from-an-effect
+      setFlipped(f => !f)
+    })
 
-      /* hammerjs example here https://codepen.io/jtangelder/pen/jOZezm */
-      // listen to events...
-      mc.on("swipeleft", (ev) => {
-        console.log(ev.type + " gesture detected.")
-        setSwipeDirection('left')
-      })
+    /* hammerjs example here https://codepen.io/jtangelder/pen/jOZezm */
+    // listen to events...
+    mc.on("swipeleft", (ev) => {
+      console.log(ev.type + " gesture detected.")
+      setSwipeDirection('left')
+    })
 
-      mc.on("swiperight", (ev) => {
-        console.log(ev.type + " gesture detected.")
-        setSwipeDirection('right')
-      })
+    mc.on("swiperight", (ev) => {
+      console.log(ev.type + " gesture detected.")
+      setSwipeDirection('right')
+    })
 
-      mc.on("press", (ev) => {
-        console.log(ev.type + " gesture detected.")
-        setSwipeDirection('none')
-      })
+    mc.on("press", (ev) => {
+      console.log(ev.type + " gesture detected.")
+      setSwipeDirection('none')
+    })
 
-      mountedRef.current = true
+    // https://react.dev/learn/synchronizing-with-effects#how-to-handle-the-effect-firing-twice-in-development
+    return () => {
+      console.log('Destroying hammer event listeners')
+      mc.destroy()
     }
   }, [])
 
-
+  console.log('Rendering card with word ', props.word)
+  console.log('swipeDirection ', swipeDirection)
   return (
     <div ref={mainDiv}>
       <animated.div style={{ ...swipeAnimation }}>
-        <FlashCard 
+        <FlashCard
           flipped={flipped}
           word={props.word}
           usage={props.usage}
