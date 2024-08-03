@@ -21,30 +21,19 @@ export default function FloatingFlashCardDeck(props) {
     })
   }
 
-  const card0 = <FloatingFlashCard
-    swipeCallback={swipeCallback}
-    {...cardData[0]}
-  />
+  /* Keys can be used to distinguish state within components */
+  const cardDatakeyPrefix = Date.now()
+  const floatingFlashCards = cardData.map((cardDataValue, cardDataIdx) => {
+    const cardDatakey = `${cardDatakeyPrefix}-${cardDataIdx++}`
+    return <FloatingFlashCard swipeCallback={swipeCallback} {...cardDataValue} key={cardDatakey} />
+  })
 
-  const card1 = <FloatingFlashCard
-    swipeCallback={swipeCallback}
-    {...cardData[1]}
-  />
-
-  const card2 = <FloatingFlashCard
-    swipeCallback={swipeCallback}
-    {...cardData[2]}
-  />
 
   /* Very important: https://react.dev/learn/preserving-and-resetting-state 
   State is tied to a position in the render tree
   */
   console.log('Rendering with card index ', cardIdx)
   return (
-    <>
-      {cardIdx === 0 && card0}
-      {cardIdx === 1 && card1}
-      {cardIdx === 2 && card2}
-    </>
+    floatingFlashCards[cardIdx]
   )
 }
