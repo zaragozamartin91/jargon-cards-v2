@@ -148,3 +148,73 @@ The TEI file was parsed using [xml-js](https://www.npmjs.com/package/xml-js).
 
 The scprit for parsing the TEI file can be found in `adhoc_scripts/read_xml.js`.
 
+## 2024-08-03
+
+### Color palette generator
+
+Cool website to generate color palettes: https://coolors.co/282c34-799496-acc196-e9eb9e-e16f7c
+
+Allows to pick a color and generate other compatible colors within a cohesive palette.
+
+### Free dictionary api
+
+Home site https://dictionaryapi.dev/
+
+Allows for querying of english word definitions.
+
+Sample request: https://api.dictionaryapi.dev/api/v2/entries/en/hello
+
+Sample response:
+```json
+  [
+    {
+      "word": "hello",
+      "phonetic": "həˈləʊ",
+      "phonetics": [
+        {
+          "text": "həˈləʊ",
+          "audio": "//ssl.gstatic.com/dictionary/static/sounds/20200429/hello--_gb_1.mp3"
+        },
+        {
+          "text": "hɛˈləʊ"
+        }
+      ],
+      "origin": "early 19th century: variant of earlier hollo ; related to holla.",
+      "meanings": [
+        {
+          "partOfSpeech": "exclamation",
+          "definitions": [
+            {
+              "definition": "used as a greeting or to begin a phone conversation.",
+              "example": "hello there, Katie!",
+              "synonyms": [],
+              "antonyms": []
+            }
+          ]
+        },
+        {
+          "partOfSpeech": "noun",
+          "definitions": [
+            {
+              "definition": "an utterance of ‘hello’; a greeting.",
+              "example": "she was getting polite nods and hellos from people",
+              "synonyms": [],
+              "antonyms": []
+            }
+          ]
+        },
+        {
+          "partOfSpeech": "verb",
+          "definitions": [
+            {
+              "definition": "say or shout ‘hello’.",
+              "example": "I pressed the phone button and helloed",
+              "synonyms": [],
+              "antonyms": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+```

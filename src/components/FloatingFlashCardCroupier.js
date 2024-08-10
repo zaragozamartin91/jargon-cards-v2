@@ -2,6 +2,7 @@ import Frame from './Frame'
 import CardData from '../model/CardData';
 import jsonData from '../data/swe-eng.json';
 import FloatingFlashCardDeck from './FloatingFlashCardDeck';
+import QueryParams from '../service/QueryParams';
 
 // Reading JSON file: https://stackoverflow.com/questions/37649695/how-can-i-parse-through-local-json-file-in-react-js
 const loadData = () => JSON.parse(JSON.stringify(jsonData));
@@ -33,6 +34,9 @@ export default function FloatingFlashCardCroupier(_props) {
 
   // map cardDataItems into cardData instances
   const cardData = cardDataItems.map(item => new CardData(item))
+
+  const queryParams = new QueryParams()
+  console.log('queryParams: ', queryParams.searchParams)
 
   return (
     <Frame overflow={'hidden'}>
