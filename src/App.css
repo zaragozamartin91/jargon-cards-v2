@@ -1,3 +1,25 @@
+/* Defining CSS variables: https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties */
+/* Palette generated with https://coolors.co/visualizer/ddfff7-93e1d8-ffa69e-aa4465-462255 */
+:root {
+  /* CSS HEX */
+  --mint-green: #ddfff7ff;
+  --tiffany-blue: #93e1d8ff;
+  --melon: #ffa69eff;
+  --raspberry-rose: #aa4465ff;
+  --russian-violet: #462255ff;
+  --soft-grey: #f7f7f8;
+  --pure-black: #000000;
+
+  --normal-text-color: var(--pure-black);
+  --background-color: var(--soft-grey);
+  --link-color: var(--raspberry-rose);
+
+  --flash-card-front-background-color: var(--tiffany-blue);
+  --flash-card-front-text-color: var(--pure-black);
+  --flash-card-back-background-color: var(--russian-violet);
+  --flash-card-back-text-color: var(--mint-green);
+}
+
 .App {
   text-align: center;
 }
@@ -14,18 +36,20 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: var(--background-color);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+
+  /* This is the text color */
+  color: var(--normal-text-color);
 }
 
 .App-link {
-  color: #61dafb;
+  color: var(--link-color);
 }
 
 @keyframes App-logo-spin {
@@ -35,4 +59,8 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.App-links {
+  width: 50%;
 }

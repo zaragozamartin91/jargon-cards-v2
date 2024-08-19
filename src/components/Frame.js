@@ -6,9 +6,9 @@ export default function Frame(props) {
 
   return (
     <div className="App" style={style} >
-      <header className="App-header">
+      <div className="App-header">
         {props.children}
-      </header>
+      </div>
     </div>
   )
 }

@@ -3,11 +3,13 @@
 }
 
 .FlashCardFront {
-    background-color: red;
+    background-color: var(--flash-card-front-background-color);
+    color: var(--flash-card-front-text-color);
 }
 
 .FlashCardBack {
-    background-color: blue;
+    background-color: var(--flash-card-back-background-color);
+    color: var(--flash-card-back-text-color);
 }
 
 .FlashCardLanguagePrompt {

@@ -1,6 +1,3 @@
-import logo from './logo.svg'
-import './App.css'
-
 import React, { Suspense, lazy } from 'react'
 
 // import { BrowserRouter as Router } from 'react-router-dom'
@@ -17,7 +14,6 @@ const App = () => (
     <Suspense fallback={<div>Loading...</div>}>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
         <Route path="/jargon-card-demo" element={<JargonCardDemo />} />
         <Route path="/tinder-card-demo" element={<TinderCardDemo />} />
         <Route path="/react-spring-demo" element={<ReactSpringDemo />} />
@@ -25,16 +21,5 @@ const App = () => (
     </Suspense>
   </Router>
 )
-
-function About(_params) {
-  return <div className="App">
-    <header className="App-header">
-      <img src={logo} className="App-logo" alt="logo" />
-      <p>
-        This is the ABOUT section.
-      </p>
-    </header>
-  </div>
-}
 
 export default App

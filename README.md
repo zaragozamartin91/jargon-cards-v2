@@ -218,3 +218,8 @@ Sample response:
     }
   ]
 ```
+
+## Update 2024-08-19
+
+App icon courtesy of https://www.flaticon.com/free-icon/flash-card_9146141
+
