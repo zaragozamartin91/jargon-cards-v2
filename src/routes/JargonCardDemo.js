@@ -1,9 +1,16 @@
 import FloatingFlashCardCroupier from "../components/FloatingFlashCardCroupier"
+import Frame from "../components/Frame"
 
 export default function JargonCardDemo(_props) {
 
   return (
-    <FloatingFlashCardCroupier overflow={'hidden'}>
-    </FloatingFlashCardCroupier>
+    <>
+      <Frame overflow={'hidden'}>
+
+        <FloatingFlashCardCroupier overflow={'hidden'}>
+        </FloatingFlashCardCroupier>
+
+      </Frame>
+    </>
   )
 }

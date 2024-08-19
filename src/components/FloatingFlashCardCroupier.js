@@ -1,4 +1,3 @@
-import Frame from './Frame'
 import CardData from '../model/CardData';
 import jsonData from '../data/swe-eng.json';
 import FloatingFlashCardDeck from './FloatingFlashCardDeck';
@@ -39,8 +38,6 @@ export default function FloatingFlashCardCroupier(_props) {
   console.log('queryParams: ', queryParams.searchParams)
 
   return (
-    <Frame overflow={'hidden'}>
       <FloatingFlashCardDeck cardData={cardData} />
-    </Frame>
   )
 }
