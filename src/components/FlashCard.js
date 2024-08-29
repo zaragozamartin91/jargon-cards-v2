@@ -2,6 +2,9 @@ import { useEffect, useRef, useState } from 'react'
 import ReactCardFlip from 'react-card-flip'
 import './FlashCard.css'
 
+const MIN_HEIGHT = 250
+const MIN_WIDTH = 250
+
 export default function FlashCard(props) {
   const flipped = props.flipped ?? false
 
@@ -31,14 +34,14 @@ export default function FlashCard(props) {
     const frontDivDimensions = parseDimensions(frontDiv.current)
     const backDivDimensions = parseDimensions(backDiv.current)
 
-    const maxWidth = Math.max(frontDivDimensions.width, backDivDimensions.width)
-    const maxHeight = Math.max(frontDivDimensions.height, backDivDimensions.height)
+    const maxDivWidth = Math.max(frontDivDimensions.width, backDivDimensions.width)
+    const maxDivHeight = Math.max(frontDivDimensions.height, backDivDimensions.height)
 
-    console.log('maxWidth', maxWidth)
-    console.log('maxHeight', maxHeight)
+    console.log('maxWidth', maxDivWidth)
+    console.log('maxHeight', maxDivHeight)
 
-    setMinWidth(maxWidth)
-    setMinHeight(maxHeight)
+    setMinWidth(Math.max(maxDivWidth, MIN_WIDTH))
+    setMinHeight(Math.max(maxDivHeight, MIN_HEIGHT))
   }, [])
 
   const frontDivStyle = {}

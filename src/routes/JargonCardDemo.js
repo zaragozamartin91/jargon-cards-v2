@@ -7,8 +7,9 @@ export default function JargonCardDemo(_props) {
     <>
       <Frame overflow={'hidden'}>
 
-        <FloatingFlashCardCroupier overflow={'hidden'}>
-        </FloatingFlashCardCroupier>
+        <FloatingFlashCardCroupier 
+          overflow={'hidden'} cardCount={10} 
+        />
 
       </Frame>
     </>
