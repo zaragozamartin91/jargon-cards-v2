@@ -1,4 +1,4 @@
-import flashCardLogo from '../assets/flash-card-logo.png'
+import flashCardLogo from '../assets/flash-card-logo-v2.png'
 import Frame from '../components/Frame'
 
 import React from 'react'
@@ -13,8 +13,8 @@ export default function Home() {
       <p>Practice new words for free!</p>
 
       <Link to="/jargon-card-demo">Jargon card demo</Link>
-      <Link to="/tinder-card-demo">Tinder card demo</Link>
-      <Link to="/react-spring-demo">React spring demo</Link>
+      <Link to="/success-screen-demo">Success screen demo</Link>
+      
 
       <a className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
         Learn React

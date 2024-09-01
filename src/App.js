@@ -6,8 +6,9 @@ import { Routes, Route } from 'react-router-dom'
 
 const Home = lazy(() => import('./routes/Home'))
 const JargonCardDemo = lazy(() => import('./routes/JargonCardDemo'))
-const TinderCardDemo = lazy(() => import('./routes/TinderCardDemo'))
-const ReactSpringDemo = lazy(() => import('./routes/ReactSpringDemo'))
+const SuccessScreenDemo = lazy(() => import('./routes/SuccessScreenDemo'))
+// const TinderCardDemo = lazy(() => import('./routes/TinderCardDemo'))
+// const ReactSpringDemo = lazy(() => import('./routes/ReactSpringDemo'))
 
 const App = () => (
   <Router /* basename="/jargon-cards-v2" */ >
@@ -15,11 +16,12 @@ const App = () => (
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/jargon-card-demo" element={<JargonCardDemo />} />
-        <Route path="/tinder-card-demo" element={<TinderCardDemo />} />
-        <Route path="/react-spring-demo" element={<ReactSpringDemo />} />
+        <Route path="/success-screen-demo" element={<SuccessScreenDemo />} />
       </Routes>
     </Suspense>
   </Router>
 )
+
+
 
 export default App
