@@ -1,4 +1,4 @@
-import '../App.css'
+import Frame from "./Frame"
 import './SparklyFrame.css'
 
 
@@ -31,7 +31,7 @@ function Sparkle(_props) {
 }
 
 export default function SparklyFrame(props) {
-  const sparkleCount = props.sparkleCount || 50; // Number of stars & sparkles
+  const sparkleCount = props.sparkleCount || 30; // Number of stars & sparkles
   const sprakles = []
 
   // Random generating elements
@@ -43,13 +43,9 @@ export default function SparklyFrame(props) {
 
   const overflow = props.overflow || 'inherit'
   return (
-    <div className="App" style={{ overflow }} >
-      <>
-        {sprakles}
-      </>
-      <div className="App-header">
-        {props.children}
-      </div>
-    </div>
+    <Frame overflow={overflow}>
+      {sprakles}
+      {props.children}
+    </Frame>
   )
 }

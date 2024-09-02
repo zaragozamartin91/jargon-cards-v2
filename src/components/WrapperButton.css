@@ -1,0 +1,21 @@
+/* Doing css animations: https://youtu.be/z2LQYsZhsFw?si=CRfl1bH1qTSbZBUG */
+
+button.WrapperButton {
+    border: none;
+    background: var(--russian-violet);
+    padding: .8em 2.5em;
+    border-radius: 100px;
+    color: white;
+    cursor: pointer;
+    transition: 150ms ease;
+    margin-bottom: 1vmin;
+}
+
+button.WrapperButton a {
+    text-decoration: none;
+    color: white;
+}
+
+button.WrapperButton:hover {
+    scale: 2;
+}

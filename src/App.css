@@ -24,16 +24,11 @@
   text-align: center;
 }
 
-.App-logo {
+.App-logo,.Animated-logo {
   height: 40vmin;
   pointer-events: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
 
 .App-header {
   background-color: var(--background-color);
@@ -48,19 +43,22 @@
   color: var(--normal-text-color);
 }
 
-.App-link {
-  color: var(--link-color);
+
+/* Doing css animations: https://youtu.be/z2LQYsZhsFw?si=CRfl1bH1qTSbZBUG */
+@media (prefers-reduced-motion: no-preference) {
+  .Animated-logo {
+    animation-name: Animated-logo-spin;
+    animation-iteration-count: infinite;
+    animation-duration: 5s;
+    animation-timing-function: linear;
+  }
 }
 
-@keyframes App-logo-spin {
+@keyframes Animated-logo-spin {
   from {
-    transform: rotate(0deg);
+    transform: rotateY(0deg);
   }
   to {
-    transform: rotate(360deg);
+    transform: rotateY(360deg);
   }
-}
-
-.App-links {
-  width: 50%;
 }

@@ -6,6 +6,6 @@ test('renders learn react link', () => {
   // Wrapping the component between Router elements is required since the Home element uses Link components
   /* See https://stackoverflow.com/questions/75728532/uncaught-typeerror-cannot-destructure-property-basename-of-react2-usecontext for more info */
   render(<Router><Home /></Router>);
-  const linkElement = screen.getByText(/learn react/i);
+  const linkElement = screen.getByText(/Jargon card demo/i);
   expect(linkElement).toBeInTheDocument();
 });
