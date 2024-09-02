@@ -8,10 +8,12 @@ import Sequence from '../model/Sequence';
 const loadData = () => JSON.parse(JSON.stringify(jsonData)); // should this be moved to the io package?
 /** @type{array} */ const loadedData = loadData()
 
+/**
+ * Sets up a floating flash card croupier
+ * @param {{cardCount: number}} props 
+ * @returns floating flash card croupier
+ */
 export default function FloatingFlashCardCroupier(props) {
-
-  console.log(loadedData[0])
-
   const cardCount = props.cardCount
   var sequence = Sequence.unique(loadedData.length)
 
@@ -28,12 +30,12 @@ export default function FloatingFlashCardCroupier(props) {
   })
 
   // map cardDataItems into cardData instances
-  const cardData = cardDataItems.map(item => new CardData(item))
+  const deck = cardDataItems.map(item => new CardData(item))
 
   const queryParams = new QueryParams()
   console.log('queryParams: ', queryParams.searchParams)
 
   return (
-    <FloatingFlashCardDeck cardData={cardData} />
+    <FloatingFlashCardDeck deck={deck} />
   )
 }
