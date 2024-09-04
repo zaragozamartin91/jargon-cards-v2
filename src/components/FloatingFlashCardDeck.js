@@ -1,11 +1,12 @@
 import FloatingFlashCard from './FloatingFlashCard'
 import { useState } from 'react'
+
 // eslint-disable-next-line
 import CardData from '../model/CardData'
 
 /**
  * Creates a floating flash card deck
- * @param {{deck: CardData[]}} props description
+ * @param {{deck: CardData[]}} props
  */
 export default function FloatingFlashCardDeck(props) {
   // TODO: move state to parent component
@@ -24,9 +25,9 @@ export default function FloatingFlashCardDeck(props) {
 
   /* Keys can be used to distinguish state within components */
   const nowTimestamp = Date.now()
-  const floatingFlashCards = deck.map((cardDataValue, cardDataIdx) => {
+  const floatingFlashCards = deck.map((cardDataItem, cardDataIdx) => {
     const floatingFlashCardKey = `${nowTimestamp}-${cardDataIdx++}`
-    return <FloatingFlashCard swipeCallback={swipeCallback} {...cardDataValue} key={floatingFlashCardKey} />
+    return <FloatingFlashCard swipeCallback={swipeCallback} cardData={cardDataItem} key={floatingFlashCardKey} />
   })
 
 

@@ -2,17 +2,26 @@ import { useEffect, useRef, useState } from 'react'
 import ReactCardFlip from 'react-card-flip'
 import './FlashCard.css'
 
+// eslint-disable-next-line
+import CardData from '../model/CardData'
+
 const MIN_HEIGHT = 250
 const MIN_WIDTH = 250
 
+/**
+ * Creates a flippable flash card based on a word
+ * @param {{filled: boolean, cardData: CardData}} props 
+ * @returns Flash card react component
+ */
 export default function FlashCard(props) {
   const flipped = props.flipped ?? false
+  const cardData = props.cardData
 
-  const word = props.word ?? '' // original word
-  const usage = props.usage ?? '' // example of use in original language
+  const word = cardData.word ?? '' // original word
+  const usage = cardData.usage ?? '' // example of use in original language
 
-  const translation = props.translation ?? ''
-  const definition = props.definition ?? ''
+  const translation = cardData.translation ?? ''
+  const definition = cardData.definition ?? ''
 
   const [minWidth, setMinWidth] = useState(0)
   const [minHeight, setMinHeight] = useState(0)

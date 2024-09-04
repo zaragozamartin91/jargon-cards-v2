@@ -3,9 +3,20 @@ import { useSpring, animated } from '@react-spring/web'
 import Hammer from 'hammerjs'
 import { useState, useEffect, useRef } from 'react'
 
+// eslint-disable-next-line
+import CardData from '../model/CardData'
 
+/**
+ * A floating flash card component. It can be swiped left or right.
+ * If a swipeCallback is passed in, it is called when the animation ends.
+ * The swipeCallback is called with the direction of the swipe as an argument: 'left' or 'right'
+ * 
+ * @param {{swipeCallback: (swipeDirection: string) => void, cardData: CardData}} props
+ * @returns Floating flash card react component
+ */
 export default function FloatingFlashCard(props) {
   const swipeCallback = props.swipeCallback ?? function () { }
+  const cardData = props.cardData
   const [swipeDirection, setSwipeDirection] = useState('none')
   const [flipped, setFlipped] = useState(false)
 
@@ -69,13 +80,7 @@ export default function FloatingFlashCard(props) {
   return (
     <div ref={mainDiv}>
       <animated.div style={{ ...swipeAnimation }}>
-        <FlashCard
-          flipped={flipped}
-          word={props.word}
-          usage={props.usage}
-          translation={props.translation}
-          definition={props.definition}
-        />
+        <FlashCard flipped={flipped} cardData={cardData} />
       </animated.div>
     </div>
   )
