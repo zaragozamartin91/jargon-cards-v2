@@ -14,9 +14,7 @@ import CardData from '../model/CardData'
  * @param {{swipeCallback: (swipeDirection: string) => void, cardData: CardData}} props
  * @returns Floating flash card react component
  */
-export default function FloatingFlashCard(props) {
-  const swipeCallback = props.swipeCallback ?? function () { }
-  const cardData = props.cardData
+export default function FloatingFlashCard({cardData, swipeCallback}) {
   const [swipeDirection, setSwipeDirection] = useState('none')
   const [flipped, setFlipped] = useState(false)
 
@@ -32,6 +30,7 @@ export default function FloatingFlashCard(props) {
       if (['left', 'right'].includes(swipeDirection)) {
         console.log('Animation has ended.')
 
+        // TODO : pass the card data to the callback AND the swipe direction
         // if swipeCallback is passed along then it is invoked
         swipeCallback(swipeDirection)
       }
@@ -43,7 +42,7 @@ export default function FloatingFlashCard(props) {
   /* Using useRef hook to control a non react widget
   https://react.dev/reference/react/useEffect#controlling-a-non-react-widget */
   useEffect(() => {
-    console.log('Mounting component')
+    console.log('Mounting FloatingFlashCard component')
     const mc = new Hammer(mainDiv.current)
     mc.on('tap', () => {
       console.log('on tap')
@@ -75,7 +74,7 @@ export default function FloatingFlashCard(props) {
     }
   }, [])
 
-  console.log('Rendering card with word ', props.word)
+  console.log('Rendering card with word ', cardData.word)
   console.log('swipeDirection ', swipeDirection)
   return (
     <div ref={mainDiv}>
