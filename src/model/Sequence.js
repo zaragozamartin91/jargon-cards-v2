@@ -43,7 +43,9 @@ export default class Sequence {
      * console.log(sequence.apply(elements)) // [20, 10, 40]
      */
     apply(elements, count) {
+        if (count <= 0) return []
         if (count > elements.length) throw new Error('Not enough elements')
+        
 
         const result = []
         const iterator = this.numberGenerator

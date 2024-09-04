@@ -19,6 +19,22 @@ describe('Sequence model test', () => {
         expect(sequence.apply(elements, 4)).toEqual(['a', 'b', 'c', 'd'])
     })
 
+    test('Apply on an empty set returns an empty list', () => {
+        const generator = makeRangeIterator()
+        const sequence = new Sequence(generator)
+        const elements = []
+
+        expect(sequence.apply(elements, 0)).toEqual([])
+    })
+
+    test('Trying to get more elements that the set size yields an error', () => {
+        const generator = makeRangeIterator()
+        const sequence = new Sequence(generator)
+        const elements = [1, 2, 3]
+
+        expect(() => sequence.apply(elements, elements.length + 1)).toThrowError('Not enough elements')
+    })
+
     test('Test generator function logic', () => {
         const generator1 = makeRangeIterator(0, 10, 2)
         expect([...generator1]).toEqual([0, 2, 4, 6, 8])

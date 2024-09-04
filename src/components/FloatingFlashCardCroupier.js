@@ -1,12 +1,13 @@
-import CardData from '../model/CardData';
-import jsonData from '../data/swe-eng.json';
-import FloatingFlashCardDeck from './FloatingFlashCardDeck';
-import QueryParams from '../service/QueryParams';
-import Sequence from '../model/Sequence';
+import FloatingFlashCardDeck from './FloatingFlashCardDeck'
+import QueryParams from '../service/QueryParams'
+import Sequence from '../model/Sequence'
 
-// Reading JSON file: https://stackoverflow.com/questions/37649695/how-can-i-parse-through-local-json-file-in-react-js
-const loadData = () => JSON.parse(JSON.stringify(jsonData)); // should this be moved to the io package?
-/** @type{array} */ const loadedData = loadData()
+import { useState, useEffect, useCallback } from 'react'
+import CardDataDeck from '../model/CardDataDeck'
+import CardDataDeckService from '../service/CardDataDeckService'
+
+
+const cardDataDeckService = new CardDataDeckService('swe')
 
 /**
  * Sets up a floating flash card croupier
@@ -14,28 +15,32 @@ const loadData = () => JSON.parse(JSON.stringify(jsonData)); // should this be m
  * @returns floating flash card croupier
  */
 export default function FloatingFlashCardCroupier(props) {
-  const cardCount = props.cardCount
-  var sequence = Sequence.unique(loadedData.length)
+  const [cardDataDeck, setCardDataDeck] = useState(CardDataDeck.empty())
+  const cardCount = Math.min(cardDataDeck.length, props.cardCount)
 
-  // Example of entry {"i":12,"w":"Brittannien","t":["Britain","Great Britain"]}
-  const cardDataItems = sequence.apply(loadedData, cardCount).map(entry => {
-    const { /*i , */ w = '', t = [] } = entry
-    const word = w
-    const usage = '' // TODO : Add usage somehow
-    const translation = t[0]
-    const synonyms = t.slice(1)
-    const definition = synonyms.length > 0 ? `Synonyms: ${synonyms.join(' , ')}` : ''
+  // async and use effect: https://devtrium.com/posts/async-functions-useeffect
 
-    return { word, usage, translation, definition }
-  })
+  // declare the async data fetching function
+  const fetchData = useCallback(async () => {
+    console.log('Loading card data from JSON')
+    const loadedDeck = await cardDataDeckService.loadFromJson()
+    setCardDataDeck(loadedDeck);  
+  }, [])
 
-  // map cardDataItems into cardData instances
-  const deck = cardDataItems.map(item => new CardData(item))
+  // the useEffect is only there to call `fetchData` at the right time
+  useEffect(() => {
+    fetchData()
+      // make sure to catch any error
+      .catch(console.error)
+  }, [fetchData])
 
   const queryParams = new QueryParams()
   console.log('queryParams: ', queryParams.searchParams)
 
+  const sequence = Sequence.unique(cardDataDeck.length)
+  const cardSequence = sequence.apply(cardDataDeck.cardDataItems, cardCount)
+
   return (
-    <FloatingFlashCardDeck deck={deck} />
+    <FloatingFlashCardDeck deck={cardSequence} />
   )
 }
