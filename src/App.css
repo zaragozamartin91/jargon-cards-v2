@@ -44,7 +44,6 @@
 }
 
 
-/* Doing css animations: https://youtu.be/z2LQYsZhsFw?si=CRfl1bH1qTSbZBUG */
 @media (prefers-reduced-motion: no-preference) {
   .Animated-logo {
     animation-name: Animated-logo-spin;
@@ -54,6 +53,9 @@
   }
 }
 
+/* Doing css animations: https://youtu.be/z2LQYsZhsFw?si=CRfl1bH1qTSbZBUG */
+/* Animation transitions: https://easings.net/ */
+/* Keyframes syntax: https://developer.mozilla.org/en-US/docs/Web/CSS/@keyframes */
 @keyframes Animated-logo-spin {
   from {
     transform: rotateY(0deg);

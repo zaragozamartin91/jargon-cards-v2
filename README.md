@@ -223,3 +223,39 @@ Sample response:
 
 App icon courtesy of https://www.flaticon.com/free-icon/flash-card_9146141
 
+## Update 2024-09-04
+
+### CSS animation docs
+
+Sparkle CSS animation was done using the following resources:
+* Quick CSS animation YT tutorial: https://youtu.be/z2LQYsZhsFw?si=CRfl1bH1qTSbZBUG 
+* Animation transitions in a nutshell: https://easings.net/ 
+* CSS @keyframes syntax: https://developer.mozilla.org/en-US/docs/Web/CSS/@keyframes 
+* Sparkle animation example code: https://codepen.io/Katie_Lu_1015/pen/OeOPXV */
+
+### Perform async operations within react components
+
+`useEffect` and `useCallback` have to be leveraged to run async operations and update the component's state in an orderly fashion.
+
+https://devtrium.com/posts/async-functions-useeffect
+
+Example code:
+```javascript
+useEffect(() => {
+  // declare the async data fetching function
+  const fetchData = async () => {
+    // get the data from the api
+    const data = await fetch('https://yourapi.com');
+    // convert the data to json
+    const json = await response.json();
+
+    // set state with the result
+    setData(json);
+  }
+
+  // call the function
+  fetchData()
+    // make sure to catch any error
+    .catch(console.error);;
+}, [])
+```
