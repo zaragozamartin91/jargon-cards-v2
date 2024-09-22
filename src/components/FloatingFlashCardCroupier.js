@@ -5,21 +5,22 @@ import { useState, useEffect, useCallback } from 'react'
 import CardDeck from '../model/CardDeck'
 import CardDeckService from '../service/CardDeckService'
 
+// eslint-disable-next-line
+import SwipedCard from '../model/SwipedCard'
 
+// TODO : Standardize languages
 const cardDataDeckService = new CardDeckService('swe')
 
 /**
  * Builds a deck of cards, deals them and keeps track of card swipes.
- * @param {{cardCount: number}} props 
+ * @param {{cardCount: number, discardCallback: (swipedCard: SwipedCard) => void}} props 
  * @returns floating flash card croupier
  */
 export default function FloatingFlashCardCroupier(props) {
   const [cardIdx, setCardIdx] = useState(0)
-  const [swipes, setSwipes] = useState([])
   const [cardDataDeck, setCardDataDeck] = useState(CardDeck.empty())
   const cardCount = Math.min(cardDataDeck.length, props.cardCount)
-  const updateScoreCallback = props.updateScoreCallback
-  const cardsExhaustedCallback = props.cardsExhaustedCallback
+  const discardCallback = props.discardCallback
 
   // async and use effect: https://devtrium.com/posts/async-functions-useeffect
 
@@ -35,32 +36,16 @@ export default function FloatingFlashCardCroupier(props) {
     fetchData().catch(console.error)
   }, [fetchData])
 
-  useEffect(() => {
-    const score = swipes.filter(swipe => swipe === 'right').length
-    updateScoreCallback(score)
-  }, [swipes, updateScoreCallback])
-
-  useEffect(() => {
-    if (cardIdx > 0 && cardIdx === cardCount) {
-      cardsExhaustedCallback()
-    }
-  }, [cardIdx, cardCount, cardsExhaustedCallback])
-
   const uniqueSequence = Sequence.unique(cardDataDeck.length)
   const shuffledDeck = uniqueSequence.apply(cardDataDeck.cardDataItems, cardCount)
 
-  const swipeCallback = (swipeDirection) => {
-    console.log(`Card swiped to the ${swipeDirection}`)
+  /** @param {SwipedCard} swipedCard swiped card */
+  const swipeCallback = (swipedCard) => {
+    const newCardIdx = Math.min(shuffledDeck.length, cardIdx + 1)
+    setCardIdx(newCardIdx)
 
-    setCardIdx(ci => {
-      const newCardIdx = Math.min(shuffledDeck.length, ci + 1)
-      console.log('New card index: ', newCardIdx)
-      return newCardIdx
-    })
-
-    const newSwipes = [...swipes, swipeDirection]
-    setSwipes(newSwipes)
-    console.log('New Swipes: ', newSwipes)
+    const deckExhausted = newCardIdx > 0 && newCardIdx === cardCount
+    discardCallback(deckExhausted ? swipedCard.exhausted() : swipedCard)
   }
 
   return (

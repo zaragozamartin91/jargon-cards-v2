@@ -11,4 +11,8 @@ export default class CardData {
         this.translation = translation ?? ''
         this.definition = definition ?? ''
     }
+
+    static empty() {
+        return new CardData({})
+    }
 }

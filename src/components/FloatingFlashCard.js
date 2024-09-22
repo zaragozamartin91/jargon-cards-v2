@@ -5,13 +5,14 @@ import { useState, useEffect, useRef } from 'react'
 
 // eslint-disable-next-line
 import CardData from '../model/CardData'
+import SwipedCard from '../model/SwipedCard'
 
 /**
  * A floating flash card component. It can be swiped left or right.
  * If a swipeCallback is passed in, it is called when the animation ends.
  * The swipeCallback is called with the direction of the swipe as an argument: 'left' or 'right'
  * 
- * @param {{swipeCallback: (swipeDirection: string) => void, cardData: CardData}} props
+ * @param {{swipeCallback: (swipedCard: SwipedCard) => void, cardData: CardData}} props
  * @returns Floating flash card react component
  */
 export default function FloatingFlashCard({cardData, swipeCallback}) {
@@ -30,9 +31,8 @@ export default function FloatingFlashCard({cardData, swipeCallback}) {
       if (['left', 'right'].includes(swipeDirection)) {
         console.log('Animation has ended.')
 
-        // TODO : pass the card data to the callback AND the swipe direction
-        // if swipeCallback is passed along then it is invoked
-        swipeCallback(swipeDirection)
+        const swipedCard = new SwipedCard({swipeDirection, cardData})
+        swipeCallback(swipedCard)
       }
     },
   })

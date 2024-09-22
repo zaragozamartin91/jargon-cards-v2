@@ -2,31 +2,40 @@ import { useState } from "react"
 import FloatingFlashCardCroupier from "../components/FloatingFlashCardCroupier"
 import Frame from "../components/Frame"
 
+// eslint-disable-next-line
+import SwipedCard from "../model/SwipedCard"
+
+// Todo: make card count configurable somehow
+const _CARD_COUNT = 10
+
+/** @type {SwipedCard[]} swipedCard */ 
+const _EMPTY_SWIPED_CARDS = []
 
 export default function JargonCardDemo(_props) {
-  const [score, setScore] = useState(0)
+
+  const [discardedCards, setDiscardedCards] = useState(_EMPTY_SWIPED_CARDS)
   
-
-  const updateScoreCallback = (newScore) => {
-    console.log('Score updated: ', newScore)
-    setScore(newScore)
+  /** @param {SwipedCard} swipedCard swiped card */
+  const discardCallback = (swipedCard) => {
+    console.log(`Discarded card: ${swipedCard.cardData.word}`)
+    setDiscardedCards([...discardedCards, swipedCard])
   }
 
-  const cardsExhaustedCallback = () => {
-    console.log('Cards Exhausted')
-  }
+  const score = discardedCards.map(swipedCard => {
+    return swipedCard.swipeDirection === 'right' ? 1 : 0
+  }).reduce((acc, score) => acc + score, 0)
 
   return (
     <>
       <Frame overflow={'hidden'}>
 
-        <p>Score: {score}/10</p>
+        <progress max={_CARD_COUNT} value={score}></progress>
+        <p>Score: {score}</p>
 
         <FloatingFlashCardCroupier
           overflow={'hidden'} 
-          cardCount={10}
-          updateScoreCallback={updateScoreCallback} 
-          cardsExhaustedCallback={cardsExhaustedCallback}
+          cardCount={_CARD_COUNT}
+          discardCallback={discardCallback}
         />
 
       </Frame>
