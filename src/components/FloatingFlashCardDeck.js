@@ -1,18 +1,18 @@
 import FloatingFlashCard from './FloatingFlashCard'
 
 // eslint-disable-next-line
-import CardData from '../model/CardData'
+import CardDeck from '../model/CardDeck'
 
 
 /**
  * Floating flash card deck component
- * @param {{cardIdx: number, deck: CardData[], swipeCallback: (swipeDirection: string) => void}} props
+ * @param {{cardIdx: number, deck: CardDeck, swipeCallback: (swipeDirection: string) => void}} props
  * @returns React component representing a floating flash card deck
  */
 export default function FloatingFlashCardDeck({cardIdx, deck, swipeCallback}) {
   /* Keys can be used to distinguish state within components */
   const nowTimestamp = Date.now()
-  const floatingFlashCards = deck.map((cardDataItem, cardDataIdx) => {
+  const floatingFlashCards = deck.cardDataItems.map((cardDataItem, cardDataIdx) => {
     const floatingFlashCardKey = `${nowTimestamp}-${cardDataIdx++}`
     return <FloatingFlashCard swipeCallback={swipeCallback} cardData={cardDataItem} key={floatingFlashCardKey} />
   })

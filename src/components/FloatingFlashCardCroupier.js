@@ -1,5 +1,4 @@
 import FloatingFlashCardDeck from './FloatingFlashCardDeck'
-import Sequence from '../model/Sequence'
 
 import { useState, useEffect, useCallback } from 'react'
 import CardDeck from '../model/CardDeck'
@@ -18,8 +17,8 @@ const cardDataDeckService = new CardDeckService('swe')
  */
 export default function FloatingFlashCardCroupier(props) {
   const [cardIdx, setCardIdx] = useState(0)
-  const [cardDataDeck, setCardDataDeck] = useState(CardDeck.empty())
-  const cardCount = Math.min(cardDataDeck.length, props.cardCount)
+  const [cardDeck, setCardDeck] = useState(CardDeck.empty())
+  const cardCount = Math.min(cardDeck.length, props.cardCount)
   const discardCallback = props.discardCallback
 
   // async and use effect: https://devtrium.com/posts/async-functions-useeffect
@@ -28,7 +27,7 @@ export default function FloatingFlashCardCroupier(props) {
   const fetchData = useCallback(async () => {
     console.log('Loading deck from JSON')
     const loadedDeck = await cardDataDeckService.loadFromJson()
-    setCardDataDeck(loadedDeck);
+    setCardDeck(loadedDeck);
   }, [])
 
   // the useEffect is only there to call `fetchData` at the right time
@@ -36,8 +35,7 @@ export default function FloatingFlashCardCroupier(props) {
     fetchData().catch(console.error)
   }, [fetchData])
 
-  const uniqueSequence = Sequence.unique(cardDataDeck.length)
-  const shuffledDeck = uniqueSequence.apply(cardDataDeck.cardDataItems, cardCount)
+  const shuffledDeck = cardDeck.sliceAndShuffle(cardCount)
 
   /** @param {SwipedCard} swipedCard swiped card */
   const swipeCallback = (swipedCard) => {
