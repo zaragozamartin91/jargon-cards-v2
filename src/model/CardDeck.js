@@ -1,7 +1,7 @@
 // eslint-disable-next-line
 import CardData from "./CardData"
 
-export default class CardDataDeck {
+export default class CardDeck {
     cardDataItems = []
 
     /**
@@ -13,7 +13,7 @@ export default class CardDataDeck {
     }
 
     static empty() {
-        return new CardDataDeck([])
+        return new CardDeck([])
     }
 
     get length() {

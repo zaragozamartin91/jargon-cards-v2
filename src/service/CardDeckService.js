@@ -1,9 +1,9 @@
 import CardData from '../model/CardData';
-import CardDataDeck from '../model/CardDataDeck';
+import CardDeck from '../model/CardDeck';
 
 const CARD_DATA_DECK_CACHE = {}
 
-export default class CardDataDeckService {
+export default class CardDeckService {
     language = ''
 
     constructor(language) {
@@ -24,7 +24,7 @@ export default class CardDataDeckService {
 
     /**
      * Loads a card data deck from a JSON file
-     * @returns {Promise<CardDataDeck>} A promise that resolves to a CardDataDeck
+     * @returns {Promise<CardDeck>} A promise that resolves to a CardDataDeck
      * @throws {Error} If the language is not supported
      */
     async loadFromJson() {
@@ -53,7 +53,7 @@ export default class CardDataDeckService {
             cardDataEntries.push(cardData)
         }
 
-        const cardDataDeck = new CardDataDeck(cardDataEntries);
+        const cardDataDeck = new CardDeck(cardDataEntries);
         CARD_DATA_DECK_CACHE[normalizedLanguage] = cardDataDeck
         return cardDataDeck
     }

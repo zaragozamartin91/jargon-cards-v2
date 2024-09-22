@@ -2,11 +2,11 @@ import FloatingFlashCardDeck from './FloatingFlashCardDeck'
 import Sequence from '../model/Sequence'
 
 import { useState, useEffect, useCallback } from 'react'
-import CardDataDeck from '../model/CardDataDeck'
-import CardDataDeckService from '../service/CardDataDeckService'
+import CardDeck from '../model/CardDeck'
+import CardDeckService from '../service/CardDeckService'
 
 
-const cardDataDeckService = new CardDataDeckService('swe')
+const cardDataDeckService = new CardDeckService('swe')
 
 /**
  * Builds a deck of cards, deals them and keeps track of card swipes.
@@ -16,7 +16,7 @@ const cardDataDeckService = new CardDataDeckService('swe')
 export default function FloatingFlashCardCroupier(props) {
   const [cardIdx, setCardIdx] = useState(0)
   const [swipes, setSwipes] = useState([])
-  const [cardDataDeck, setCardDataDeck] = useState(CardDataDeck.empty())
+  const [cardDataDeck, setCardDataDeck] = useState(CardDeck.empty())
   const cardCount = Math.min(cardDataDeck.length, props.cardCount)
   const updateScoreCallback = props.updateScoreCallback
   const cardsExhaustedCallback = props.cardsExhaustedCallback
@@ -46,14 +46,14 @@ export default function FloatingFlashCardCroupier(props) {
     }
   }, [cardIdx, cardCount, cardsExhaustedCallback])
 
-  const sequence = Sequence.unique(cardDataDeck.length)
-  const cardSequence = sequence.apply(cardDataDeck.cardDataItems, cardCount)
+  const uniqueSequence = Sequence.unique(cardDataDeck.length)
+  const shuffledDeck = uniqueSequence.apply(cardDataDeck.cardDataItems, cardCount)
 
   const swipeCallback = (swipeDirection) => {
     console.log(`Card swiped to the ${swipeDirection}`)
 
     setCardIdx(ci => {
-      const newCardIdx = Math.min(cardSequence.length, ci + 1)
+      const newCardIdx = Math.min(shuffledDeck.length, ci + 1)
       console.log('New card index: ', newCardIdx)
       return newCardIdx
     })
@@ -65,7 +65,7 @@ export default function FloatingFlashCardCroupier(props) {
 
   return (
     <FloatingFlashCardDeck
-      deck={cardSequence}
+      deck={shuffledDeck}
       cardIdx={cardIdx}
       swipeCallback={swipeCallback}
     />
