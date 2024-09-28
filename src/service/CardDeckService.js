@@ -1,25 +1,18 @@
 import CardData from '../model/CardData';
 import CardDeck from '../model/CardDeck';
+import Language from '../model/Language';
 
 const CARD_DATA_DECK_CACHE = {}
 
 export default class CardDeckService {
-    language = ''
+    language = Language.None
 
-    constructor(language) {
+    /**
+     * @param {Language} language 
+     */
+    constructor(language = Language.None) {
+        if (language.isNone()) { throw new Error('No language provided') }
         this.language = language
-    }
-
-    normalizeLanguage() {
-        switch (this.language.toLowerCase()) {
-            case 'swe':
-            case 'swedish':
-                return 'swe'
-            case 'eng':
-                return 'eng'
-            default:
-                throw new Error(`Unsupported language: ${this.language}`)
-        }
     }
 
     /**
@@ -28,15 +21,15 @@ export default class CardDeckService {
      * @throws {Error} If the language is not supported
      */
     async loadFromJson() {
-        const normalizedLanguage = this.normalizeLanguage()
+        const language = this.language
 
-        if (normalizedLanguage in CARD_DATA_DECK_CACHE) {
+        if (language in CARD_DATA_DECK_CACHE) {
             // Returning loaded data from cache
-            return CARD_DATA_DECK_CACHE[normalizedLanguage]
+            return CARD_DATA_DECK_CACHE[language]
         }
 
         // Reading JSON file: https://stackoverflow.com/questions/37649695/how-can-i-parse-through-local-json-file-in-react-js
-        const jsonData = await import(`../data/${normalizedLanguage}-eng.json`)
+        const jsonData = await import(`../data/${language.code}-${Language.English.code}.json`)
 
         const cardDataEntries = []
         for (let i = 0; i < jsonData.length; i++) {
@@ -54,7 +47,7 @@ export default class CardDeckService {
         }
 
         const cardDataDeck = new CardDeck(cardDataEntries);
-        CARD_DATA_DECK_CACHE[normalizedLanguage] = cardDataDeck
+        CARD_DATA_DECK_CACHE[language] = cardDataDeck
         return cardDataDeck
     }
 }

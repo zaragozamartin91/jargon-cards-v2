@@ -16,7 +16,7 @@ export default class Direction {
     static fromString(direction = 'none') {
         const d = direction || 'none'
 
-        switch (d) {
+        switch (d.toLowerCase()) {
             case 'up': return Direction.Up
             case 'down': return Direction.Down
             case 'left': return Direction.Left

@@ -6,9 +6,10 @@ import CardDeckService from '../service/CardDeckService'
 
 // eslint-disable-next-line
 import SwipedCard from '../model/SwipedCard'
+import Language from '../model/Language'
 
-// TODO : Standardize languages
-const cardDataDeckService = new CardDeckService('swe')
+// TODO : Make language configurable
+const cardDataDeckService = new CardDeckService(Language.Swedish)
 
 /**
  * Builds a deck of cards, deals them and keeps track of card swipes.
