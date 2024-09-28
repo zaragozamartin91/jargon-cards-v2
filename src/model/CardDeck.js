@@ -1,6 +1,6 @@
 // eslint-disable-next-line
 import CardData from "./CardData"
-import Sequence from '../model/Sequence'
+import UniqueSequence from "./UniqueSequence"
 
 export default class CardDeck {
     /** @type {CardData[]} */ cardDataItems = []
@@ -27,8 +27,8 @@ export default class CardDeck {
      * @returns New shuffle deck of size 'count'
      */
     sliceAndShuffle(count) {
-        const sequence = Sequence.unique(this.length)
-        const shuffledItems = sequence.apply(this.cardDataItems, count)
+        const sequence = new UniqueSequence(this.cardDataItems, count)
+        const shuffledItems = sequence.unique().items
         return new CardDeck(shuffledItems)
     }
 }
