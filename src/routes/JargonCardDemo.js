@@ -21,9 +21,7 @@ export default function JargonCardDemo(_props) {
     setDiscardedCards([...discardedCards, swipedCard])
   }
 
-  const score = discardedCards.map(swipedCard => {
-    return swipedCard.swipeDirection === 'right' ? 1 : 0
-  }).reduce((acc, score) => acc + score, 0)
+  const score = SwipedCard.totalScore(discardedCards)
 
   return (
     <>

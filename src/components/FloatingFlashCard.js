@@ -6,6 +6,7 @@ import { useState, useEffect, useRef } from 'react'
 // eslint-disable-next-line
 import CardData from '../model/CardData'
 import SwipedCard from '../model/SwipedCard'
+import Direction from '../model/Direction'
 
 /**
  * A floating flash card component. It can be swiped left or right.
@@ -15,23 +16,24 @@ import SwipedCard from '../model/SwipedCard'
  * @param {{swipeCallback: (swipedCard: SwipedCard) => void, cardData: CardData}} props
  * @returns Floating flash card react component
  */
-export default function FloatingFlashCard({cardData, swipeCallback}) {
-  const [swipeDirection, setSwipeDirection] = useState('none')
+export default function FloatingFlashCard({ cardData, swipeCallback }) {
+  const [swipeDirection, setSwipeDirection] = useState(Direction.None)
   const [flipped, setFlipped] = useState(false)
 
-  const swipeTransformations = {
-    none: 'translateX(0%)', left: 'translateX(-500%)', right: 'translateX(500%)'
-  }
+  const swipeTransformations = {}
+  swipeTransformations[Direction.None] = 'translateX(0%)'
+  swipeTransformations[Direction.Left] = 'translateX(-500%)'
+  swipeTransformations[Direction.Right] = 'translateX(500%)'
 
   // Define a spring animation for the swipe-out effect
   const swipeAnimation = useSpring({
     transform: swipeTransformations[swipeDirection],
     onRest: () => {
       // Callback to be invoked when the animation ends
-      if (['left', 'right'].includes(swipeDirection)) {
+      if ([Direction.Left, Direction.Right].includes(swipeDirection)) {
         console.log('Animation has ended.')
 
-        const swipedCard = new SwipedCard({swipeDirection, cardData})
+        const swipedCard = new SwipedCard({ swipeDirection, cardData })
         swipeCallback(swipedCard)
       }
     },
@@ -54,17 +56,17 @@ export default function FloatingFlashCard({cardData, swipeCallback}) {
     // listen to events...
     mc.on("swipeleft", (ev) => {
       console.log(ev.type + " gesture detected.")
-      setSwipeDirection('left')
+      setSwipeDirection(Direction.Left)
     })
 
     mc.on("swiperight", (ev) => {
       console.log(ev.type + " gesture detected.")
-      setSwipeDirection('right')
+      setSwipeDirection(Direction.Right)
     })
 
     mc.on("press", (ev) => {
       console.log(ev.type + " gesture detected.")
-      setSwipeDirection('none')
+      setSwipeDirection(Direction.None)
     })
 
     // https://react.dev/learn/synchronizing-with-effects#how-to-handle-the-effect-firing-twice-in-development
@@ -75,7 +77,7 @@ export default function FloatingFlashCard({cardData, swipeCallback}) {
   }, [])
 
   console.log('Rendering card with word ', cardData.word)
-  console.log('swipeDirection ', swipeDirection)
+  console.log('swipeDirection ', swipeDirection.name)
   return (
     <div ref={mainDiv}>
       <animated.div style={{ ...swipeAnimation }}>
