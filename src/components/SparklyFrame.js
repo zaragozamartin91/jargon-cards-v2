@@ -9,7 +9,8 @@ const styles = ['', 'alt', 'alt2']
 const animations = ['pulse', 'pulse-1', 'pulse-2', 'pulse-3']
 
 function rand(min, max) {
-  return Math.floor((Math.random() * max) + min)
+  const boundary = max - min
+  return Math.floor((Math.random() * boundary) + min)
 }
 
 const NOW = Date.now()
@@ -25,7 +26,10 @@ function Sparkle(_props) {
   classes += animations[rand(0, animations.length)]
 
   // Random position
-  const style = { top: `${rand(0, 100)}%`, left: `${rand(0, 100)}%` }
+  const style = { 
+    top: `${rand(5, 95)}%`, 
+    left: `${rand(5, 95)}%` 
+  }
 
   return <div className={classes} style={style}></div>
 }
