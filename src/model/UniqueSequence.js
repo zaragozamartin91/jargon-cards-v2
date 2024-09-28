@@ -1,6 +1,4 @@
 
-// TODO : rewrite to use  Fisher–Yates (aka Knuth) Shuffle
-// https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
 export default class UniqueSequence {
     items = []
     size = 0
