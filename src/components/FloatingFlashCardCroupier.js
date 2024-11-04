@@ -43,7 +43,7 @@ export default function FloatingFlashCardCroupier(props) {
     const newCardIdx = Math.min(shuffledDeck.length, cardIdx + 1)
     setCardIdx(newCardIdx)
 
-    const deckExhausted = newCardIdx > 0 && newCardIdx === cardCount
+    const deckExhausted = newCardIdx > 0 && newCardIdx >= cardCount
     discardCallback(deckExhausted ? swipedCard.exhausted() : swipedCard)
   }
 

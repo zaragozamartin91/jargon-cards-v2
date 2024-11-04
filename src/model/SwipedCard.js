@@ -36,4 +36,13 @@ export default class SwipedCard {
     static totalScore(swipedCards) {
         return swipedCards.map(swipedCard => swipedCard.score()).reduce((acc, score) => acc + score, 0)
     }
+
+    /**
+     * Determines whether a set of cards has been exhausted. An exhausted set of cards is one that has a final card.
+     * @param {SwipedCard[]} swipedCards Swiped cards
+     * @returns 
+     */
+    static cardsExhausted(swipedCards) {
+        return swipedCards.at(-1)?.finalCard
+    }
 }

@@ -259,3 +259,16 @@ useEffect(() => {
     .catch(console.error);;
 }, [])
 ```
+
+## Update 2024-10-27
+
+### Adding environment variables on a github page
+
+This could be useful to convert the react app into a Firebase one with  Firestore capabilities
+
+https://stackoverflow.com/questions/53648652/how-to-use-environment-variables-in-github-page
+
+### Firebase restrict access by URL
+
+https://stackoverflow.com/questions/35418143/how-to-restrict-firebase-data-modification
+
