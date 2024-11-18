@@ -8,7 +8,10 @@ import CardDeckService from '../service/CardDeckService'
 import SwipedCard from '../model/SwipedCard'
 import Language from '../model/Language'
 
+import Snackbar from './Snackbar'
+
 // TODO : Make language configurable
+// TODO : Should the card deck be loaded outside of this component?
 const cardDataDeckService = new CardDeckService(Language.Swedish)
 
 /**
@@ -19,6 +22,7 @@ const cardDataDeckService = new CardDeckService(Language.Swedish)
 export default function FloatingFlashCardCroupier(props) {
   const [cardIdx, setCardIdx] = useState(0)
   const [cardDeck, setCardDeck] = useState(CardDeck.empty())
+  const [snackbarMessage, setSnackbarMessage] = useState('')
   const cardCount = Math.min(cardDeck.length, props.cardCount)
   const discardCallback = props.discardCallback
 
@@ -40,6 +44,8 @@ export default function FloatingFlashCardCroupier(props) {
 
   /** @param {SwipedCard} swipedCard swiped card */
   const swipeCallback = (swipedCard) => {
+    setSnackbarMessage(swipedCard.swipedRight() ? 'Correct!' : 'Incorrect!')
+
     const newCardIdx = Math.min(shuffledDeck.length, cardIdx + 1)
     setCardIdx(newCardIdx)
 
@@ -48,10 +54,13 @@ export default function FloatingFlashCardCroupier(props) {
   }
 
   return (
-    <FloatingFlashCardDeck
-      deck={shuffledDeck}
-      cardIdx={cardIdx}
-      swipeCallback={swipeCallback}
-    />
+    <>
+      <FloatingFlashCardDeck
+        deck={shuffledDeck}
+        cardIdx={cardIdx}
+        swipeCallback={swipeCallback}
+      />
+      <Snackbar text={snackbarMessage} idx={cardIdx}></Snackbar>
+    </>
   )
 }

@@ -74,6 +74,14 @@
 }
 
 .pulse-1 {
+	/* 
+	Shorthand for
+	  	animation-name: pulse;
+		animation-duration: 1.1s;
+		animation-timing-function: linear;
+		animation-delay: 300ms;
+		animation-iteration-count: infinite;
+	*/
 	animation: pulse 1.1s 300ms linear infinite;
 }
 
