@@ -50,4 +50,31 @@ export default class CardDeckService {
         CARD_DATA_DECK_CACHE[language] = cardDataDeck
         return cardDataDeck
     }
+
+
+    /**
+     * Loads a dummy card deck for testing purposes
+     * @returns {Promise<CardDeck>} A promise that resolves to a CardDataDeck
+     * @throws {Error} If the language is not supported
+     */
+    async loadDummy() {
+        const cardDataEntries = []
+
+        cardDataEntries.push(new CardData({
+            word: 'fördömelse',
+            usage: 'då jag är i samma fördömelse som du',
+            translation: 'condemnation',
+            definition: 'The act of condemning. The state of being condemned. Severe reproof; strong censure. A reason or occasion for condemning. The act of condemning or pronouncing to be wrong; censure; blame; disapprobation. Similar: censureblamedisapprobation The act of judicially condemning, or adjudging guilty, unfit for use, or forfeited; the act of dooming to punishment or forfeiture. The ground or reason of condemning.'
+        }))
+
+        cardDataEntries.push(new CardData({
+            word: 'hjälte',
+            usage: 'du är min hjälta',
+            translation: 'hero',
+            definition: 'In mythology and legend, a man, often of divine ancestry, who is endowed with great courage and strength, celebrated for his bold exploits, and favored by the gods.'
+        }))
+
+        const cardDataDeck = new CardDeck(cardDataEntries);
+        return cardDataDeck
+    }
 }

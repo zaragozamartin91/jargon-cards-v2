@@ -148,6 +148,10 @@ The TEI file was parsed using [xml-js](https://www.npmjs.com/package/xml-js).
 
 The scprit for parsing the TEI file can be found in `adhoc_scripts/read_xml.js`.
 
+Here is the dictionary database: https://freedict.org/freedict-database.json
+* From here, the compressed dictionaries can be downloaded in `tar.gz`
+* The dictionaries are stored in TEI format.
+
 ## 2024-08-03
 
 ### Color palette generator

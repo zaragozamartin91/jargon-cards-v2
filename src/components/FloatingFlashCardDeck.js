@@ -20,6 +20,10 @@ export default function FloatingFlashCardDeck({cardIdx, deck, swipeCallback}) {
 
   /* Very important: https://react.dev/learn/preserving-and-resetting-state 
   State is tied to a position in the render tree
+
+  TODO: Can we render all cards at once and make them STACKABLE using smart positioning?
+  https://www.freecodecamp.org/news/css-positioning-position-absolute-and-relative/
+  EG: use z-index with absolute positioning
   */
   console.log('Rendering with card index ', cardIdx)
   return (

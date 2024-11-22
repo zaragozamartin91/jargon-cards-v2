@@ -1,17 +1,6 @@
-.FlashCardSide {
-    padding: 10px;
-}
-
-.FlashCardFront {
-    background-color: var(--flash-card-front-background-color);
-    color: var(--flash-card-front-text-color);
-}
-
-.FlashCardBack {
-    background-color: var(--flash-card-back-background-color);
-    color: var(--flash-card-back-text-color);
-}
 
 .FlashCardLanguagePrompt {
     text-align: left;
+    margin-left: 2vw;
+    margin-top: 2vh;
 }

@@ -23,7 +23,8 @@ export default function FloatingFlashCardCroupier(props) {
   const [cardIdx, setCardIdx] = useState(0)
   const [cardDeck, setCardDeck] = useState(CardDeck.empty())
   const [snackbarMessage, setSnackbarMessage] = useState('')
-  const cardCount = Math.min(cardDeck.length, props.cardCount)
+  
+  const deckSize = Math.min(cardDeck.length, props.cardCount)
   const discardCallback = props.discardCallback
 
   // async and use effect: https://devtrium.com/posts/async-functions-useeffect
@@ -31,32 +32,35 @@ export default function FloatingFlashCardCroupier(props) {
   // declare the async data fetching function
   const fetchData = useCallback(async () => {
     console.log('Loading deck from JSON')
+
     const loadedDeck = await cardDataDeckService.loadFromJson()
-    setCardDeck(loadedDeck);
-  }, [])
+    // const loadedDeck = await cardDataDeckService.loadDummy()
+    const shuffleSize = Math.min(loadedDeck.length, props.cardCount)
+    const shuffledDeck = loadedDeck.sliceAndShuffle(shuffleSize)
+
+    setCardDeck(shuffledDeck);
+  }, [props.cardCount])
 
   // the useEffect is only there to call `fetchData` at the right time
   useEffect(() => {
     fetchData().catch(console.error)
   }, [fetchData])
 
-  const shuffledDeck = cardDeck.sliceAndShuffle(cardCount)
-
   /** @param {SwipedCard} swipedCard swiped card */
   const swipeCallback = (swipedCard) => {
     setSnackbarMessage(swipedCard.swipedRight() ? 'Correct!' : 'Incorrect!')
 
-    const newCardIdx = Math.min(shuffledDeck.length, cardIdx + 1)
+    const newCardIdx = Math.min(cardDeck.length, cardIdx + 1)
     setCardIdx(newCardIdx)
 
-    const deckExhausted = newCardIdx > 0 && newCardIdx >= cardCount
+    const deckExhausted = newCardIdx > 0 && newCardIdx >= deckSize
     discardCallback(deckExhausted ? swipedCard.exhausted() : swipedCard)
   }
 
   return (
     <>
       <FloatingFlashCardDeck
-        deck={shuffledDeck}
+        deck={cardDeck}
         cardIdx={cardIdx}
         swipeCallback={swipeCallback}
       />

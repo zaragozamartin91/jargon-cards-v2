@@ -24,7 +24,7 @@ export default class CardDeck {
     /**
      * Slices and shuffles a deck
      * @param {number} count Number of items to slice and shuffle
-     * @returns New shuffle deck of size 'count'
+     * @returns {CardDeck} New shuffle deck of size 'count'
      */
     sliceAndShuffle(count) {
         const sequence = new UniqueSequence(this.cardDataItems, count)

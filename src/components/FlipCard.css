@@ -1,0 +1,74 @@
+/* How this works:
+- Both the front and back sides are stacked on top of each other
+- The back side is rotated 180 degrees
+- Visibility of the backface is hidden
+- When client click on the card, the flip-card-inner is rotated via `flipCardInnerRef.current.style.transform`
+*/
+
+/* The flip card container - set the width and height to whatever you want. 
+We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
+.flip-card {
+  background-color: transparent;
+
+  /* vh stands for viewport height. This unit is based on the height of the viewport. 
+  A value of 1vh is equal to 1% of the viewport height. 
+  A value of 100vh is equal to 100% of the viewport height. */
+  /* More about viewport units here: https://www.sitepoint.com/css-viewport-units-quick-start/ */
+  width: 65vw;
+  height: 50vh;
+
+  border: 1px solid #f1f1f1;
+  perspective: 1000px;
+  /* Remove this if you don't want the 3D effect */
+}
+
+/* This container is needed to position the front and back side */
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  /* The transition CSS property is a shorthand property for transition-property, transition-duration, transition-timing-function, transition-delay, and transition-behavior.
+    https://developer.mozilla.org/en-US/docs/Web/CSS/transition */
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+/* Do an horizontal flip when you move the mouse over the flip box container */
+/* .flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+  } */
+
+/* Position the front and back side */
+.flip-card-front,
+.flip-card-back {
+  /* Absolute position within flip-card-inner
+    More on CSS positioning here: https://www.freecodecamp.org/news/css-positioning-position-absolute-and-relative/.
+    Both front and back side of the cards occupy the exact same spot / space.
+    */
+  position: absolute;
+  width: 100%;
+  height: 100%;
+
+  /* Determines whether or not the 'back' side of a transformed element is visible when facing the viewer. 
+    With an identity transform, the front side of an element faces the viewer. */
+  -webkit-backface-visibility: hidden;
+  /* Safari */
+  backface-visibility: hidden;
+}
+
+/* Style the front side (fallback if image is missing) */
+.flip-card-front {
+  background-color: #bbb;
+  color: black;
+}
+
+/* Style the back side */
+.flip-card-back {
+  background-color: dodgerblue;
+  color: white;
+
+  /* The transform CSS property lets you rotate, scale, skew, or translate an element. 
+    It modifies the coordinate space of the CSS visual formatting model. https://developer.mozilla.org/en-US/docs/Web/CSS/transform */
+  transform: rotateY(180deg);
+}

@@ -2,6 +2,7 @@ import './Snackbar.css'
 import { useRef } from 'react'
 import React, { useEffect } from 'react'
 
+/* Example from https://www.w3schools.com/howto/howto_js_snackbar.asp */
 
 /**
  * A snackbar component that displays a message at the bottom of the screen.
