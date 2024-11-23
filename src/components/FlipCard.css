@@ -14,12 +14,18 @@ We have added the border property to demonstrate that the flip itself goes out o
   A value of 1vh is equal to 1% of the viewport height. 
   A value of 100vh is equal to 100% of the viewport height. */
   /* More about viewport units here: https://www.sitepoint.com/css-viewport-units-quick-start/ */
-  width: 65vw;
+  width: 75vw;
   height: 50vh;
 
   border: 1px solid #f1f1f1;
   perspective: 1000px;
   /* Remove this if you don't want the 3D effect */
+}
+
+@media screen and (min-width: 900px) {
+  .flip-card {
+    width: 50vw;
+  }  
 }
 
 /* This container is needed to position the front and back side */
@@ -59,13 +65,17 @@ We have added the border property to demonstrate that the flip itself goes out o
 
 /* Style the front side (fallback if image is missing) */
 .flip-card-front {
-  background-color: #bbb;
-  color: black;
+  /* background-color: #bbb; */
+  /* background-color: #df5777; */
+  background-color: #b33e87;
+  /* color: black; */
+  color: white;
 }
 
 /* Style the back side */
 .flip-card-back {
-  background-color: dodgerblue;
+  /* background-color: dodgerblue; */
+  background-color: #418bc6;
   color: white;
 
   /* The transform CSS property lets you rotate, scale, skew, or translate an element. 
