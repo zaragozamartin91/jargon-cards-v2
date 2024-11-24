@@ -79,7 +79,7 @@ export default function FloatingFlashCard({ cardData, swipeCallback }) {
   console.log('Rendering card with word ', cardData.word)
   console.log('swipeDirection ', swipeDirection.name)
   return (
-    <div ref={mainDiv}>
+    <div ref={mainDiv} className='FloatingFlashCard'>
       <animated.div style={{ ...swipeAnimation }}>
         <FlashCard flipped={flipped} cardData={cardData} />
       </animated.div>

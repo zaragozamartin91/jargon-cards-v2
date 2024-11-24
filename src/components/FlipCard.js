@@ -15,7 +15,7 @@ export default function FlipCard({ frontContent, backContent, flipped }) {
     }, [flipped])
 
     return <>
-        <div className="flip-card">
+        <div className="FlipCard flip-card">
             <div className="flip-card-inner" ref={flipCardInnerRef}>
                 <div className="flip-card-front">
                     {frontContent}
