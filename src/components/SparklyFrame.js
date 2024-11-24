@@ -25,10 +25,15 @@ function Sparkle(_props) {
   classes += styles[rand(0, styles.length)] + " "
   classes += animations[rand(0, animations.length)]
 
+  const margin = 5
+
   // Random position
+  const topIdx = rand(margin, 100 - margin)
+  const leftIdx = rand(margin, 100 - margin)
+  
   const style = { 
-    top: `${rand(5, 95)}%`, 
-    left: `${rand(5, 95)}%` 
+    top: `${topIdx}%`, 
+    left: `${leftIdx}%` 
   }
 
   return <div className={classes} style={style}></div>

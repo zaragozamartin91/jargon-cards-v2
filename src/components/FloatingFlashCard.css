@@ -1,0 +1,15 @@
+.FloatingFlashCard {
+    animation: swipeUp 1s;
+}
+
+@keyframes swipeUp {
+    from {
+        position: relative;
+        top: 100vh;
+    }
+
+    to {
+        position: relative;
+        top: 0;
+    }
+}

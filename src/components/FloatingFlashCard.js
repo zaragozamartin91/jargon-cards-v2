@@ -1,4 +1,6 @@
 import FlashCard from './FlashCard'
+import './FloatingFlashCard.css'
+
 import { useSpring, animated } from '@react-spring/web'
 import Hammer from 'hammerjs'
 import { useState, useEffect, useRef } from 'react'
