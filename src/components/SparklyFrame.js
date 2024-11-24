@@ -20,20 +20,22 @@ function sparkleKey(suffix) {
 
 function Sparkle(_props) {
   // Random styles
-  let classes = shapes[rand(0, shapes.length)] + " "
-  classes += sizes[rand(0, sizes.length)] + " "
-  classes += styles[rand(0, styles.length)] + " "
-  classes += animations[rand(0, animations.length)]
+  const classes = [
+    shapes[rand(0, shapes.length)],
+    sizes[rand(0, sizes.length)],
+    styles[rand(0, styles.length)],
+    animations[rand(0, animations.length)]
+  ].join(' ')
 
   const margin = 5
 
   // Random position
   const topIdx = rand(margin, 100 - margin)
   const leftIdx = rand(margin, 100 - margin)
-  
-  const style = { 
-    top: `${topIdx}%`, 
-    left: `${leftIdx}%` 
+
+  const style = {
+    top: `${topIdx}%`,
+    left: `${leftIdx}%`
   }
 
   return <div className={classes} style={style}></div>
