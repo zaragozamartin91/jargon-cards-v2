@@ -27,4 +27,16 @@ export default class Language {
     isNone() {
         return this === Language.None
     }
+
+    /**
+     * Generates a translation code string by combining the language code of the current instance
+     * with the language code of another Language instance.
+     *
+     * @param {Language} other - The other Language instance whose code will be combined.
+     * @returns {string} A string in the format "code1-code2", where code1 is the code of the
+     *                   current instance and code2 is the code of the other instance.
+     */
+    translationCode(other) {
+        return `${this.code}-${other.code}`
+    }
 }

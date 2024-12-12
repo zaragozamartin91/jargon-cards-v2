@@ -29,28 +29,65 @@ export default class CardDeckService {
         }
 
         // Reading JSON file: https://stackoverflow.com/questions/37649695/how-can-i-parse-through-local-json-file-in-react-js
-        const jsonData = await import(`../data/${language.code}-${Language.English.code}.json`)
+        // return await this.loadFreeDictFile(language)
+        return await this.loadFolketsFile(language)
+    }
 
-        const cardDataEntries = []
+
+    async loadFreeDictFile(language) {
+        const jsonData = await import(`../data/${language.translationCode(Language.English)}-public.json`);
+
+        const cardDataEntries = [];
         for (let i = 0; i < jsonData.length; i++) {
             // Example of entry {"i":12,"w":"Brittannien","t":["Britain","Great Britain"]}
-            const entry = jsonData[i]
-            const { /*i , */ w = '', t = [] } = entry
-            const word = w
-            const usage = '' // TODO : Add usage somehow
-            const translation = t[0]
-            const synonyms = t.slice(1)
-            const definition = synonyms.length > 0 ? `Synonyms: ${synonyms.join(' , ')}` : ''
+            const entry = jsonData[i];
+            const { /*i , */ w = '', t = [] } = entry;
+            const word = w;
+            const usage = ''; // TODO : Add usage somehow
+            const translations = t;
+            const synonyms = t.slice(1);
+            const definition = synonyms.length > 0 ? `Synonyms: ${synonyms.join(' , ')}` : '';
 
-            const cardData = new CardData({ word, usage, translation, definition })
-            cardDataEntries.push(cardData)
+            const cardData = new CardData({ word, usage, translations, definition });
+            cardDataEntries.push(cardData);
         }
 
         const cardDataDeck = new CardDeck(cardDataEntries);
+        CARD_DATA_DECK_CACHE[language] = cardDataDeck;
+        return cardDataDeck;
+    }
+
+    async loadFolketsFile(language) {
+        // For now its assumed that dest language is English
+        const jsonData = await import(`../data/${language.translationCode(Language.English)}-folkets.json`);
+
+        const cardDataEntries = [];
+        for (let i = 0; i < jsonData.length; i++) {
+            const entry = jsonData[i]
+            const word = entry['w']
+            const definition = entry['d']
+            const synonyms = entry['s']
+            const example = entry['e']
+            const translations = entry['t']
+            const definitionTranslation = entry['dt']
+            const exampleTranslation = entry['et']
+
+            const cardData = new CardData({
+                word,
+                definition,
+                synonyms,
+                example,
+                translations,
+                definitionTranslation,
+                exampleTranslation
+            })
+            cardDataEntries.push(cardData)
+        }
+
+        const cardDataDeck = new CardDeck(cardDataEntries)
         CARD_DATA_DECK_CACHE[language] = cardDataDeck
         return cardDataDeck
     }
-
 
     /**
      * Loads a dummy card deck for testing purposes

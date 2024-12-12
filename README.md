@@ -152,6 +152,14 @@ Here is the dictionary database: https://freedict.org/freedict-database.json
 * From here, the compressed dictionaries can be downloaded in `tar.gz`
 * The dictionaries are stored in TEI format.
 
+### The PEOPLE'S dictionary
+
+https://folkets-lexikon.csc.kth.se/folkets/folkets.en.html
+
+From [this site](https://folkets-lexikon.csc.kth.se/folkets/om.en.html) its possible to download very complete english-swedish dictionaries.
+
+This one contains words, definitions and examples.
+
 ## 2024-08-03
 
 ### Color palette generator
@@ -160,7 +168,7 @@ Cool website to generate color palettes: https://coolors.co/282c34-799496-acc196
 
 Allows to pick a color and generate other compatible colors within a cohesive palette.
 
-### Free dictionary api
+### Free ENGLISH dictionary api
 
 Home site https://dictionaryapi.dev/
 
@@ -276,3 +284,24 @@ https://stackoverflow.com/questions/53648652/how-to-use-environment-variables-in
 
 https://stackoverflow.com/questions/35418143/how-to-restrict-firebase-data-modification
 
+
+## Update 2024-12-03
+
+### CSS positioning
+
+https://developer.mozilla.org/en-US/docs/Web/CSS/position
+
+#### static
+The element is positioned according to the Normal Flow of the document. The top, right, bottom, left, and z-index properties have no effect. This is the default value.
+
+#### relative
+The element is positioned __according to the normal flow of the document, and then offset relative to itself based on the values of top, right, bottom, and left__. The offset does not affect the position of any other elements; thus, the space given for the element in the page layout is the same as if position were static.
+This value creates a new stacking context when the value of z-index is not auto. Its effect on table-*-group, table-row, table-column, table-cell, and table-caption elements is undefined.
+
+#### absolute
+The element is __removed__ from the normal document flow, and no space is created for the element in the page layout. The element is positioned relative to its closest positioned ancestor (if any) or to the initial containing block. Its final position is determined by the values of top, right, bottom, and left.
+This value creates a new stacking context when the value of z-index is not auto. The margins of absolutely positioned boxes do not collapse with other margins.
+
+#### fixed
+The element is __removed__ from the normal document flow, and no space is created for the element in the page layout. The element is positioned relative to its initial containing block, which is the viewport in the case of visual media. Its final position is determined by the values of top, right, bottom, and left.
+This value always creates a new stacking context. In printed documents, the element is placed in the same position on every page.

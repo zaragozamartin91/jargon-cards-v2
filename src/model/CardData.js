@@ -1,18 +1,52 @@
 export default class CardData {
-    /** @type{string} */ word 
-    /** @type{string} */ usage 
-    /** @type{string} */ translation
-    /** @type{string} */ definition 
+    /** @type {string} */   word
+    /** @type {string} */   definition
+    /** @type {string[]} */ synonyms
+    /** @type {string} */   example
+    /** @type {string[]} */ translations
+    /** @type {string} */   definitionTranslation
+    /** @type {string} */   exampleTranslation
 
-    /** @param {{word: string, usage: string, translation: string, definition: string}} */
-    constructor({word, usage, translation, definition}) {
+
+    /**
+     * Creates a card data item
+     * @prop {string} word
+     * @prop {string} definition
+     * @prop {string[]} synonyms
+     * @prop {string} example
+     * @prop {string[]} translations
+     * @prop {string} definitionTranslation
+     * @prop {string} exampleTranslation
+     */
+    constructor({
+        word = '',
+        definition = '',
+        synonyms = [],
+        example = '',
+        translations = [],
+        definitionTranslation = '',
+        exampleTranslation = '',
+    }) {
+
         this.word = word ?? ''
-        this.usage = usage ?? ''
-        this.translation = translation ?? ''
         this.definition = definition ?? ''
+        this.synonyms = synonyms ?? []
+        this.example = example ?? ''
+        this.translations = translations ?? []
+        this.definitionTranslation = definitionTranslation ?? ''
+        this.exampleTranslation = exampleTranslation ?? ''
+
     }
 
     static empty() {
         return new CardData({})
+    }
+
+    get mainTranslation() {
+        return this.translations?.[0] ?? ''
+    }
+
+    get otherTranslations() {
+        return this.translations?.slice(1) ?? []
     }
 }

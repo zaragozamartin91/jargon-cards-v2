@@ -2,6 +2,7 @@
     animation: swipeUp 1s;
 }
 
+/* More about CSS positioning: https://developer.mozilla.org/en-US/docs/Web/CSS/position */
 @keyframes swipeUp {
     from {
         position: relative;

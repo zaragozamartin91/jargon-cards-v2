@@ -1,5 +1,6 @@
 import React from 'react'
-import flashCardLogo from '../assets/checkmark.png'
+// import flashCardLogo from '../assets/checkmark.png'
+import flashCardLogo from '../assets/checkmark-trimmed.png'
 import WrapperButton from './WrapperButton'
 import { Link } from "react-router-dom"
 
