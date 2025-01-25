@@ -1,4 +1,6 @@
-/* Doing css animations: https://youtu.be/z2LQYsZhsFw?si=CRfl1bH1qTSbZBUG */
+:root {
+    --wrapper-button-font-size: 4vmin
+}
 
 button.WrapperButton {
     border: none;
@@ -7,7 +9,8 @@ button.WrapperButton {
     border-radius: 100px;
     color: white;
     cursor: pointer;
-    transition: 150ms ease;
+    /* Doing css animations: https://youtu.be/z2LQYsZhsFw?si=CRfl1bH1qTSbZBUG */
+    /* This transition configures the scale up of the button on hover. See :hover below */
     margin-bottom: 1vmin;
 }
 
@@ -16,6 +19,34 @@ button.WrapperButton a {
     color: white;
 }
 
-button.WrapperButton:hover {
-    scale: 2;
+button.WrapperButton-animated:hover {
+    scale: 1.5;
+    transition: 150ms ease;
+}
+
+button.WrapperButton-round {
+    /** The aspect-ratio CSS property allows you to define the desired width-to-height ratio of an element's box. 
+    * This means that even if the parent container or viewport size changes, 
+    * the browser will adjust the element's dimensions to maintain the specified width-to-height ratio. 
+    * The specified aspect ratio is used in the calculation of auto sizes and some other layout functions. */
+    aspect-ratio: 1;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    /* top and bottom | left and right */
+    padding: 0 var(--wrapper-button-font-size);
+}
+
+button.WrapperButton-right {
+    position: absolute;
+    right: 3vw;
+}
+
+button.WrapperButton-top {
+    position: absolute;
+    top: 2vh;
+}
+
+button.WrapperButton-single {
+    font-size: var(--wrapper-button-font-size);
 }

@@ -15,6 +15,10 @@ export default function SuccessScreen({ cardCount = 0, score = 0 }) {
       <li>Cards: {cardCount}</li>
       <li>Score: {score}</li>
     </ul>
-    <WrapperButton> <Link to="/">Back to main menu</Link></WrapperButton>
+    <Link to="/">
+      <WrapperButton>
+        <span>Back to main menu</span>
+      </WrapperButton>
+    </Link>
   </>
 }

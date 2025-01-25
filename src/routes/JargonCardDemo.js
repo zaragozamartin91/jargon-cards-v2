@@ -1,4 +1,6 @@
 import { useState } from "react"
+import { Link } from "react-router-dom"
+
 import FloatingFlashCardCroupier from "../components/FloatingFlashCardCroupier"
 import Frame from "../components/Frame"
 import SparklyFrame from '../components/SparklyFrame'
@@ -7,6 +9,8 @@ import SuccessScreen from '../components/SuccessScreen'
 // eslint-disable-next-line
 import SwipedCard from "../model/SwipedCard"
 import Scoreboard from "../components/Scoreboard"
+
+import WrapperButton from "../components/WrapperButton"
 
 // Todo: make card count configurable somehow
 const _CARD_COUNT = 10
@@ -35,6 +39,11 @@ export default function JargonCardDemo(_props) {
     )
     : (
       <Frame overflow={'hidden'}>
+        <Link to="/">
+          <WrapperButton qualifiers={['round', 'top', 'right', 'single']}>
+            <span><strong>X</strong></span>
+          </WrapperButton>
+        </Link>
 
         <Scoreboard
           maxScore={_CARD_COUNT}
